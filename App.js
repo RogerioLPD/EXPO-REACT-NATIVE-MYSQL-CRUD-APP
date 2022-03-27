@@ -5,31 +5,33 @@ import { StyleSheet, View, Alert, TextInput, Button, Text, Platform, TouchableOp
 import { StackNavigator } from 'react-navigation';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+
+
 class MainActivity extends Component {
 
   static navigationOptions =
-  {
-     title: 'MainActivity',
-  };
+    {
+      title: 'MainActivity',
+    };
 
-constructor(props) {
+  constructor(props) {
 
-   super(props)
+    super(props)
 
-   this.state = {
+    this.state = {
 
-     TextInput_Student_Name: '',
-     TextInput_Student_Class: '',
-     TextInput_Student_PhoneNumber: '',
-     TextInput_Student_Email: '',
+      TextInput_Student_Name: '',
+      TextInput_Student_Class: '',
+      TextInput_Student_PhoneNumber: '',
+      TextInput_Student_Email: '',
 
-   }
+    }
 
- }
+  }
 
- InsertStudentRecordsToServer = () =>{
+  InsertStudentRecordsToServer = () => {
 
-      fetch('https://shipply.shop/InsertStudentData.php', {
+    fetch('https://shipply.shop/InsertStudentData.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -37,108 +39,118 @@ constructor(props) {
       },
       body: JSON.stringify({
 
-        student_name : this.state.TextInput_Student_Name,
+        student_name: this.state.TextInput_Student_Name,
 
-        student_class : this.state.TextInput_Student_Class,
+        student_class: this.state.TextInput_Student_Class,
 
-        student_phone_number : this.state.TextInput_Student_PhoneNumber,
+        student_phone_number: this.state.TextInput_Student_PhoneNumber,
 
         student_email: this.state.TextInput_Student_Email
 
       })
 
-      }).then((response) => response.json())
-          .then((responseJson) => {
+    }).then((response) => response.json())
+      .then((responseJson) => {
 
-            // Showing response message coming from server after inserting records.
-            Alert.alert(responseJson);
+        // Showing response message coming from server after inserting records.
+        Alert.alert(responseJson);
 
-          }).catch((error) => {
-            console.error(error);
-          });
+      }).catch((error) => {
+        console.error(error);
+      });
 
-}
-
- GoTo_Show_StudentList_Activity_Function = () =>
-  {
-    this.props.navigation.navigate('Second');
-    
   }
 
- render() {
-   return (
+  GoTo_Show_StudentList_Activity_Function = () => {
+    this.props.navigation.navigate('Second');
 
-<View style={styles.MainContainer}>
+  }
+
+  GoTo_Show_EventList_Activity_Function = () => {
+    this.props.navigation.navigate('Fourth');
+
+  }
+
+  render() {
+    return (
+
+      <View style={styles.MainContainer}>
 
 
-       <Text style={{fontSize: 20, textAlign: 'center', marginBottom: 7}}> Student Registration Form </Text>
- 
-       <TextInput
-         
-         placeholder="Enter Student Name"
+        <Text style={{ fontSize: 20, textAlign: 'center', marginBottom: 7 }}> Student Registration Form </Text>
 
-         onChangeText={ TextInputValue => this.setState({ TextInput_Student_Name : TextInputValue }) }
+        <TextInput
 
-         underlineColorAndroid='transparent'
+          placeholder="Enter Student Name"
 
-         style={styles.TextInputStyleClass}
-       />
+          onChangeText={TextInputValue => this.setState({ TextInput_Student_Name: TextInputValue })}
 
-      <TextInput
-         
-         placeholder="Enter Student Class"
+          underlineColorAndroid='transparent'
 
-         onChangeText={ TextInputValue => this.setState({ TextInput_Student_Class : TextInputValue }) }
+          style={styles.TextInputStyleClass}
+        />
 
-         underlineColorAndroid='transparent'
+        <TextInput
 
-         style={styles.TextInputStyleClass}
-       />
+          placeholder="Enter Student Class"
 
-      <TextInput
-         
-         placeholder="Enter Student Phone Number"
+          onChangeText={TextInputValue => this.setState({ TextInput_Student_Class: TextInputValue })}
 
-         onChangeText={ TextInputValue => this.setState({ TextInput_Student_PhoneNumber : TextInputValue }) }
+          underlineColorAndroid='transparent'
 
-         underlineColorAndroid='transparent'
+          style={styles.TextInputStyleClass}
+        />
 
-         style={styles.TextInputStyleClass}
-       />
+        <TextInput
 
-       <TextInput
+          placeholder="Enter Student Phone Number"
 
-         placeholder="Enter Student Email"
+          onChangeText={TextInputValue => this.setState({ TextInput_Student_PhoneNumber: TextInputValue })}
 
-         onChangeText={ TextInputValue => this.setState({ TextInput_Student_Email : TextInputValue }) }
+          underlineColorAndroid='transparent'
 
-         underlineColorAndroid='transparent'
+          style={styles.TextInputStyleClass}
+        />
 
-         style={styles.TextInputStyleClass}
-       />
+        <TextInput
 
-      <TouchableOpacity activeOpacity = { .4 } style={styles.TouchableOpacityStyle} onPress={this.InsertStudentRecordsToServer} >
+          placeholder="Enter Student Email"
 
-        <Text style={styles.TextStyle}> INSERT STUDENT RECORD TO SERVER </Text>
+          onChangeText={TextInputValue => this.setState({ TextInput_Student_Email: TextInputValue })}
 
-      </TouchableOpacity>
+          underlineColorAndroid='transparent'
 
-      <TouchableOpacity activeOpacity = { .4 } style={styles.TouchableOpacityStyle} onPress={this.GoTo_Show_StudentList_Activity_Function} >
+          style={styles.TextInputStyleClass}
+        />
 
-        <Text style={styles.TextStyle}> SHOW ALL INSERTED STUDENT RECORDS IN LISTVIEW </Text>
+        <TouchableOpacity activeOpacity={.4} style={styles.TouchableOpacityStyle} onPress={this.InsertStudentRecordsToServer} >
 
-      </TouchableOpacity>
- 
+          <Text style={styles.TextStyle}> INSERT STUDENT RECORD TO SERVER </Text>
 
-</View>
-           
-   );
- }
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={.4} style={styles.TouchableOpacityStyle} onPress={this.GoTo_Show_StudentList_Activity_Function} >
+
+          <Text style={styles.TextStyle}> SHOW ALL INSERTED STUDENT RECORDS IN LISTVIEW </Text>
+
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={.4} style={styles.TouchableOpacityStyle} onPress={this.GoTo_Show_EventList_Activity_Function} >
+
+          <Text style={styles.TextStyle}> SHOW ALL EVENT RECORDS IN LISTVIEW </Text>
+
+        </TouchableOpacity>
+
+
+      </View>
+
+    );
+  }
 }
 
 class ShowStudentListActivity extends Component {
 
-  constructor(props) { 
+  constructor(props) {
 
     super(props);
 
@@ -150,271 +162,374 @@ class ShowStudentListActivity extends Component {
   }
 
   static navigationOptions =
-  {
-     title: 'ShowStudentListActivity',
-  };
+    {
+      title: 'ShowStudentListActivity',
+    };
 
   componentDidMount() {
-    
-       return fetch('https://shipply.shop/ShowAllStudentsList.php')
-         .then((response) => response.json())
-         .then((responseJson) => {
-           let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-           this.setState({
-             isLoading: false,
-             dataSource: ds.cloneWithRows(responseJson),
-           }, function() {
-             // In this block you can do something with new state.
-           });
-         })
-         .catch((error) => {
-           console.error(error);
-         });
-     }
-    
-     GetStudentIDFunction=(student_id,student_name, student_class, student_phone_number, student_email)=>{
 
-          this.props.navigation.navigate('Third', { 
+    return fetch('https://shipply.shop/ShowAllStudentsList.php')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        this.setState({
+          isLoading: false,
+          dataSource: ds.cloneWithRows(responseJson),
+        }, function () {
+          // In this block you can do something with new state.
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
-            ID : student_id,
-            NAME : student_name,
-            CLASS : student_class,
-            PHONE_NUMBER : student_phone_number,
-            EMAIL : student_email
+  GetStudentIDFunction = (student_id, student_name, student_class, student_phone_number, student_email) => {
 
-          });
+    this.props.navigation.navigate('Third', {
 
-     }
+      ID: student_id,
+      NAME: student_name,
+      CLASS: student_class,
+      PHONE_NUMBER: student_phone_number,
+      EMAIL: student_email
 
-     ListViewItemSeparator = () => {
-       return (
-         <View
-           style={{
-             height: .5,
-             width: "100%",
-             backgroundColor: "#000",
-           }}
-         />
-       );
-     }
+    });
 
-     render() {
-      if (this.state.isLoading) {
-        return (
-          <View style={{flex: 1, paddingTop: 20}}>
-            <ActivityIndicator />
-          </View>
-        );
-      }
-   
+  }
+
+  ListViewItemSeparator = () => {
+    return (
+      <View
+        style={{
+          height: .5,
+          width: "100%",
+          backgroundColor: "#000",
+        }}
+      />
+    );
+  }
+
+  render() {
+    if (this.state.isLoading) {
       return (
-   
-        <View style={styles.MainContainer_For_Show_StudentList_Activity}>
-   
-          <ListView
-   
-            dataSource={this.state.dataSource}
-   
-            renderSeparator= {this.ListViewItemSeparator}
-   
-            renderRow={ (rowData) => <Text style={styles.rowViewContainer} 
-
-                      onPress={this.GetStudentIDFunction.bind(
-                        this, rowData.student_id,
-                         rowData.student_name, 
-                         rowData.student_class, 
-                         rowData.student_phone_number, 
-                         rowData.student_email
-                         )} > 
-
-                      {rowData.student_name} 
-                      
-                      </Text> }
-   
-          />
-   
+        <View style={{ flex: 1, paddingTop: 20 }}>
+          <ActivityIndicator />
         </View>
       );
     }
 
+    return (
+
+      <View style={styles.MainContainer_For_Show_StudentList_Activity}>
+
+        <ListView
+
+          dataSource={this.state.dataSource}
+
+          renderSeparator={this.ListViewItemSeparator}
+
+          renderRow={(rowData) => <Text style={styles.rowViewContainer}
+
+            onPress={this.GetStudentIDFunction.bind(
+              this, rowData.student_id,
+              rowData.student_name,
+              rowData.student_class,
+              rowData.student_phone_number,
+              rowData.student_email
+            )} >
+
+            {rowData.student_name}
+
+          </Text>}
+
+        />
+
+      </View>
+    );
+  }
+
 }
 
 class EditStudentRecordActivity extends Component {
-  
+
   constructor(props) {
-    
-       super(props)
-    
-       this.state = {
-    
-         TextInput_Student_ID: '',
-         TextInput_Student_Name: '',
-         TextInput_Student_Class: '',
-         TextInput_Student_PhoneNumber: '',
-         TextInput_Student_Email: '',
-    
-       }
-    
-     }
 
-     componentDidMount(){
+    super(props)
 
-      // Received Student Details Sent From Previous Activity and Set Into State.
-      this.setState({ 
-        TextInput_Student_ID : this.props.navigation.state.params.ID,
-        TextInput_Student_Name: this.props.navigation.state.params.NAME,
-        TextInput_Student_Class: this.props.navigation.state.params.CLASS,
-        TextInput_Student_PhoneNumber: this.props.navigation.state.params.PHONE_NUMBER,
-        TextInput_Student_Email: this.props.navigation.state.params.EMAIL,
-      })
+    this.state = {
 
-     }
-  
-    static navigationOptions =
+      TextInput_Student_ID: '',
+      TextInput_Student_Name: '',
+      TextInput_Student_Class: '',
+      TextInput_Student_PhoneNumber: '',
+      TextInput_Student_Email: '',
+
+    }
+
+  }
+
+  componentDidMount() {
+
+    // Received Student Details Sent From Previous Activity and Set Into State.
+    this.setState({
+      TextInput_Student_ID: this.props.navigation.state.params.ID,
+      TextInput_Student_Name: this.props.navigation.state.params.NAME,
+      TextInput_Student_Class: this.props.navigation.state.params.CLASS,
+      TextInput_Student_PhoneNumber: this.props.navigation.state.params.PHONE_NUMBER,
+      TextInput_Student_Email: this.props.navigation.state.params.EMAIL,
+    })
+
+  }
+
+  static navigationOptions =
     {
-       title: 'EditStudentRecordActivity',
+      title: 'EditStudentRecordActivity',
     };
 
-    UpdateStudentRecord = () =>{
-      
-            fetch('https://shipply.shop/UpdateStudentRecord.php', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-      
-              student_id : this.state.TextInput_Student_ID,
+  UpdateStudentRecord = () => {
 
-              student_name : this.state.TextInput_Student_Name,
-      
-              student_class : this.state.TextInput_Student_Class,
-      
-              student_phone_number : this.state.TextInput_Student_PhoneNumber,
-      
-              student_email: this.state.TextInput_Student_Email
-      
-            })
-      
-            }).then((response) => response.json())
-                .then((responseJson) => {
-      
-                  // Showing response message coming from server updating records.
-                  Alert.alert(responseJson);
-      
-                }).catch((error) => {
-                  console.error(error);
-                });
-      
-      }
+    fetch('https://shipply.shop/UpdateStudentRecord.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+
+        student_id: this.state.TextInput_Student_ID,
+
+        student_name: this.state.TextInput_Student_Name,
+
+        student_class: this.state.TextInput_Student_Class,
+
+        student_phone_number: this.state.TextInput_Student_PhoneNumber,
+
+        student_email: this.state.TextInput_Student_Email
+
+      })
+
+    }).then((response) => response.json())
+      .then((responseJson) => {
+
+        // Showing response message coming from server updating records.
+        Alert.alert(responseJson);
+
+      }).catch((error) => {
+        console.error(error);
+      });
+
+  }
 
 
-    DeleteStudentRecord = () =>{
-        
-          fetch('https://shipply.shop/DeleteStudentRecord.php', {
-          method: 'POST',
-          headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-        
-            student_id : this.state.TextInput_Student_ID
-        
-          })
-        
-          }).then((response) => response.json())
-          .then((responseJson) => {
-        
-            // Showing response message coming from server after inserting records.
-            Alert.alert(responseJson);
-        
-          }).catch((error) => {
-             console.error(error);
-          });
+  DeleteStudentRecord = () => {
 
-          this.props.navigation.navigate('First');
+    fetch('https://shipply.shop/DeleteStudentRecord.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
 
-      }
+        student_id: this.state.TextInput_Student_ID
 
-    render() {
+      })
 
+    }).then((response) => response.json())
+      .then((responseJson) => {
+
+        // Showing response message coming from server after inserting records.
+        Alert.alert(responseJson);
+
+      }).catch((error) => {
+        console.error(error);
+      });
+
+    this.props.navigation.navigate('First');
+
+  }
+
+  render() {
+
+    return (
+
+      <View style={styles.MainContainer}>
+
+        <Text style={{ fontSize: 20, textAlign: 'center', marginBottom: 7 }}> Edit Student Record Form </Text>
+
+        <TextInput
+
+          placeholder="Student Name Shows Here"
+
+          value={this.state.TextInput_Student_Name}
+
+          onChangeText={TextInputValue => this.setState({ TextInput_Student_Name: TextInputValue })}
+
+          underlineColorAndroid='transparent'
+
+          style={styles.TextInputStyleClass}
+        />
+
+        <TextInput
+
+          placeholder="Student Class Shows Here"
+
+          value={this.state.TextInput_Student_Class}
+
+          onChangeText={TextInputValue => this.setState({ TextInput_Student_Class: TextInputValue })}
+
+          underlineColorAndroid='transparent'
+
+          style={styles.TextInputStyleClass}
+        />
+
+        <TextInput
+
+          placeholder="Student Phone Number Shows Here"
+
+          value={this.state.TextInput_Student_PhoneNumber}
+
+          onChangeText={TextInputValue => this.setState({ TextInput_Student_PhoneNumber: TextInputValue })}
+
+          underlineColorAndroid='transparent'
+
+          style={styles.TextInputStyleClass}
+        />
+
+        <TextInput
+
+          placeholder="Student Email Shows Here"
+
+          value={this.state.TextInput_Student_Email}
+
+          onChangeText={TextInputValue => this.setState({ TextInput_Student_Email: TextInputValue })}
+
+          underlineColorAndroid='transparent'
+
+          style={styles.TextInputStyleClass}
+        />
+
+        <TouchableOpacity activeOpacity={.4} style={styles.TouchableOpacityStyle} onPress={this.UpdateStudentRecord} >
+
+          <Text style={styles.TextStyle}> UPDATE STUDENT RECORD </Text>
+
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={.4} style={styles.TouchableOpacityStyle} onPress={this.DeleteStudentRecord} >
+
+          <Text style={styles.TextStyle}> DELETE CURRENT RECORD </Text>
+
+        </TouchableOpacity>
+
+
+      </View>
+
+    );
+  }
+
+}
+
+class showevent extends Component {
+
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+
+      isLoading: true
+
+    }
+  }
+
+  static navigationOptions =
+    {
+      title: 'sponser.php',
+    };
+
+  componentDidMount() {
+
+    return fetch('https://shipply.shop/sponser.php')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        this.setState({
+          isLoading: false,
+          dataSource: ds.cloneWithRows(responseJson),
+        }, function () {
+          // In this block you can do something with new state.
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  GetStudentIDFunction = (Name, CNIC, PhoneNO, Department, oid) => {
+
+    this.props.navigation.navigate('Third', {
+
+      ID: Name,
+      NAME: CNIC,
+      CLASS: PhoneNO,
+      PHONE_NUMBER: Department,
+      EMAIL: oid
+
+    });
+
+  }
+
+  ListViewItemSeparator = () => {
+    return (
+      <View
+        style={{
+          height: .5,
+          width: "100%",
+          backgroundColor: "#000",
+        }}
+      />
+    );
+  }
+
+  render() {
+    if (this.state.isLoading) {
       return (
-   
-   <View style={styles.MainContainer}>
-   
-          <Text style={{fontSize: 20, textAlign: 'center', marginBottom: 7}}> Edit Student Record Form </Text>
-    
-          <TextInput
-            
-            placeholder="Student Name Shows Here"
-            
-            value={this.state.TextInput_Student_Name}
-   
-            onChangeText={ TextInputValue => this.setState({ TextInput_Student_Name : TextInputValue }) }
-   
-            underlineColorAndroid='transparent'
-   
-            style={styles.TextInputStyleClass}
-          />
-   
-         <TextInput
-            
-            placeholder="Student Class Shows Here"
-
-            value={this.state.TextInput_Student_Class}
-   
-            onChangeText={ TextInputValue => this.setState({ TextInput_Student_Class : TextInputValue }) }
-   
-            underlineColorAndroid='transparent'
-   
-            style={styles.TextInputStyleClass}
-          />
-   
-         <TextInput
-            
-            placeholder="Student Phone Number Shows Here"
-
-            value={this.state.TextInput_Student_PhoneNumber}
-   
-            onChangeText={ TextInputValue => this.setState({ TextInput_Student_PhoneNumber : TextInputValue }) }
-   
-            underlineColorAndroid='transparent'
-   
-            style={styles.TextInputStyleClass}
-          />
-   
-          <TextInput
-   
-            placeholder="Student Email Shows Here"
-
-            value={this.state.TextInput_Student_Email}
-   
-            onChangeText={ TextInputValue => this.setState({ TextInput_Student_Email : TextInputValue }) }
-   
-            underlineColorAndroid='transparent'
-   
-            style={styles.TextInputStyleClass}
-          />
-   
-         <TouchableOpacity activeOpacity = { .4 } style={styles.TouchableOpacityStyle} onPress={this.UpdateStudentRecord} >
-   
-            <Text style={styles.TextStyle}> UPDATE STUDENT RECORD </Text>
-   
-         </TouchableOpacity>
-   
-         <TouchableOpacity activeOpacity = { .4 } style={styles.TouchableOpacityStyle} onPress={this.DeleteStudentRecord} >
-   
-            <Text style={styles.TextStyle}> DELETE CURRENT RECORD </Text>
-   
-         </TouchableOpacity>
-    
-   
-   </View>
-              
+        <View style={{ flex: 1, paddingTop: 20 }}>
+          <ActivityIndicator />
+        </View>
       );
     }
+
+    return (
+
+      <View style={styles.MainContainer_For_Show_StudentList_Activity}>
+
+        <ListView
+
+          dataSource={this.state.dataSource}
+
+          renderSeparator={this.ListViewItemSeparator}
+
+          renderRow={(rowData) => <Text style={styles.rowViewContainer}
+
+            onPress={this.GetStudentIDFunction.bind(
+              this, rowData.oid,
+              rowData.Name,
+              rowData.CNIC,
+              rowData.PhoneNO,
+              rowData.Department
+            )} >
+
+            {rowData.Name}
+
+          </Text>}
+
+        />
+
+      </View>
+    );
+  }
 
 }
 
@@ -422,61 +537,63 @@ var app;
 export default app = createStackNavigator(
 
   {
-
+    
     First: { screen: MainActivity },
-
+    
     Second: { screen: ShowStudentListActivity },
-
-    Third: { screen: EditStudentRecordActivity }
+    
+    Third: { screen: EditStudentRecordActivity },
+    
+    Fourth: { screen: showevent },
 
   });
 
 const styles = StyleSheet.create({
 
-  MainContainer :{
+  MainContainer: {
 
     alignItems: 'center',
-    flex:1,
+    flex: 1,
     paddingTop: 30,
     backgroundColor: '#fff'
 
   },
 
-  MainContainer_For_Show_StudentList_Activity :{
-    
-    flex:1,
+  MainContainer_For_Show_StudentList_Activity: {
+
+    flex: 1,
     paddingTop: (Platform.OS == 'ios') ? 20 : 0,
     marginLeft: 5,
     marginRight: 5
-    
-    },
+
+  },
 
   TextInputStyleClass: {
 
-  textAlign: 'center',
-  width: '90%',
-  marginBottom: 7,
-  height: 40,
-  borderWidth: 1,
-  borderColor: '#FF5722',
-  borderRadius: 5 ,
+    textAlign: 'center',
+    width: '90%',
+    marginBottom: 7,
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#FF5722',
+    borderRadius: 5,
 
   },
 
   TouchableOpacityStyle: {
 
-    paddingTop:10,
-    paddingBottom:10,
-    borderRadius:5,
-    marginBottom:7,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 5,
+    marginBottom: 7,
     width: '90%',
     backgroundColor: '#00BCD4'
 
   },
 
-  TextStyle:{
-    color:'#fff',
-    textAlign:'center',
+  TextStyle: {
+    color: '#fff',
+    textAlign: 'center',
   },
 
   rowViewContainer: {
@@ -484,6 +601,20 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingTop: 10,
     paddingBottom: 10,
-  }
+  },
+
+  container: {
+    marginTop: -60,
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    padding: 8,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 
 });

@@ -5,14 +5,18 @@
 
 ![alt text](https://shipply.shop/snaps/iii.jpeg)
 
+![alt text](https://shipply.shop/snaps/la.jpeg)
+
+![alt text](https://shipply.shop/snaps/ppppp.jpeg)
+
 # Cool Organizers
 
 This is a react native app that uses insert, update, display and delete CRUD operations from MySQL database using PHP. 
 It is native mobile app for Android and iOS smartphones.
 
-## Crud React Native, PHP e MySql
+## Cool Organizers React Native, PHP e MySql
 
-> React Native Insert Update Display Delete CRUD Operations MySQL DB
+> React Native Cool Organizers CRUD Operations MySQL DB
 ```sh
 npm install
 npm start

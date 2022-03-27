@@ -77,11 +77,11 @@ class MainActivity extends Component {
       <View style={styles.MainContainer}>
 
 
-        <Text style={{ fontSize: 20, textAlign: 'center', marginBottom: 7 }}> Student Registration Form </Text>
+        <Text style={{ fontSize: 20, textAlign: 'center', marginBottom: 7 }}> Participent Registration Form </Text>
 
         <TextInput
 
-          placeholder="Enter Student Name"
+          placeholder="Enter Participant Name"
 
           onChangeText={TextInputValue => this.setState({ TextInput_Student_Name: TextInputValue })}
 
@@ -92,7 +92,7 @@ class MainActivity extends Component {
 
         <TextInput
 
-          placeholder="Enter Student Class"
+          placeholder="Enter Participant Class"
 
           onChangeText={TextInputValue => this.setState({ TextInput_Student_Class: TextInputValue })}
 
@@ -103,7 +103,7 @@ class MainActivity extends Component {
 
         <TextInput
 
-          placeholder="Enter Student Phone Number"
+          placeholder="Enter Participant Phone Number"
 
           onChangeText={TextInputValue => this.setState({ TextInput_Student_PhoneNumber: TextInputValue })}
 
@@ -114,7 +114,7 @@ class MainActivity extends Component {
 
         <TextInput
 
-          placeholder="Enter Student Email"
+          placeholder="Enter Participant CNIC"
 
           onChangeText={TextInputValue => this.setState({ TextInput_Student_Email: TextInputValue })}
 
@@ -356,11 +356,11 @@ class EditStudentRecordActivity extends Component {
 
       <View style={styles.MainContainer}>
 
-        <Text style={{ fontSize: 20, textAlign: 'center', marginBottom: 7 }}> Edit Student Record Form </Text>
+        <Text style={{ fontSize: 20, textAlign: 'center', marginBottom: 7 }}> Edit Participant Record Form </Text>
 
         <TextInput
 
-          placeholder="Student Name Shows Here"
+          placeholder="Participant Name Shows Here"
 
           value={this.state.TextInput_Student_Name}
 
@@ -373,7 +373,7 @@ class EditStudentRecordActivity extends Component {
 
         <TextInput
 
-          placeholder="Student Class Shows Here"
+          placeholder="Participant Class Shows Here"
 
           value={this.state.TextInput_Student_Class}
 
@@ -399,7 +399,7 @@ class EditStudentRecordActivity extends Component {
 
         <TextInput
 
-          placeholder="Student Email Shows Here"
+          placeholder="Student Cnic Shows Here"
 
           value={this.state.TextInput_Student_Email}
 

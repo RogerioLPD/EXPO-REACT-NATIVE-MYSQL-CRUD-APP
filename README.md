@@ -1,3 +1,10 @@
+
+![alt text](https://shipply.shop/snaps/i.jpeg)
+
+![alt text](https://shipply.shop/snaps/ii.jpeg)
+
+![alt text](https://shipply.shop/snaps/iii.jpeg)
+
 # react-native-crud-app
 <p align="center" >
 <img width="300"  src="app.jpg">
@@ -33,12 +40,6 @@ cd react-native-crud-app
 
 **Note:** If you have installed ``` yarn ``` as package manager instead of ``` npm ``` (Node Package Manager), then type ``` yarn start ``` at cmd or terminal.
 
-5. Scan the QR Code from Android App or iOS App using Expo for Android (Google Play Store Link: https://play.google.com/store/apps/details?id=host.exp.exponent) or Expo for iOS (App Store Link: https://itunes.apple.com/us/app/expo-client/id982107779) and enjoy the react native app.
-
-<p align="center" >
-<img width="300"  src="https://raw.githubusercontent.com/VISI-ONE/create-react-native-web-app/master/template/src/logo.png">
-</p>
-
 ```sh
     Clear watchman watches: watchman watch-del-all.
     Delete the node_modules folder: rm -rf node_modules && npm install.
@@ -46,6 +47,3 @@ cd react-native-crud-app
     Remove haste cache: rm -rf /tmp/haste-map-react-native-packager-*.
     npm i react@latest
 ```
-
-- https://reactnativecode.com/insert-update-display-delete-crud-operations/
-> @cpdrenato

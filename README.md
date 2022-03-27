@@ -5,10 +5,8 @@
 
 ![alt text](https://shipply.shop/snaps/iii.jpeg)
 
-# react-native-crud-app
-<p align="center" >
-<img width="300"  src="app.jpg">
-</p>
+# Cool Organizers
+
 This is a react native app that uses insert, update, display and delete CRUD operations from MySQL database using PHP. 
 It is native mobile app for Android and iOS smartphones.
 
